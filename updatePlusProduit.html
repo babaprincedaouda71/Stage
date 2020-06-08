@@ -1,0 +1,22 @@
+{% extends "pages/index1.html" %}
+{% load static %}
+{% block addProduits %}
+<form class="dropzone dropzone-custom needsclick add-professors" action="" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <div class="form-group">
+        Nom <input type="text" name="nom" value="{{produits.nom}}">
+        Quantité actuelle <input type="text" name="quantite" value="{{produits.quantite }}">
+        Quantité à ajouter<input type="number" name="qtePlus" value="">
+        <div class="form-group">
+            <input type="submit" name="inpt_{{produit.code}}" class="form-control" value="Ajouter">
+        </div>
+        <div class="form-group">
+            <input type="submit" name="inpt_{{produit.code}}" class="form-control" value="Retirer">
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+{% endblock addProduits %}

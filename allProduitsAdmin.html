@@ -1,0 +1,51 @@
+{% extends "pages/base.html" %}
+{% load static %}
+{% block allProduits %}
+    <div class="contacts-area mg-b-15">
+      <div class="container-fluid">
+        <div class="row">
+
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+              <div class="sparkline8-list">
+                  <div class="sparkline8-hd">
+                      <div class="main-sparkline8-hd">
+                          <h1>Tous les produits</h1>
+                      </div>
+                  </div>
+                  <div class="sparkline8-graph">
+                      <div class="static-table-list">
+                          <table class="table" align = "center">
+
+                              <thead>
+                                  <tr>
+                                      <th>#</th>
+                                      <th>Code</th>
+                                      <th>Nom</th>
+                                      <th>Quantité</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                {% for produit in produits %}
+                                  <tr>
+                                      <td>1</td>
+                                      <td>{{produit.code_product}}</td>
+                                      <td>{{produit.nom}}</td>
+                                      <td>{{produit.quantite}}</td>
+                                      <td> <a href="{% url 'pages:updatePlusProduit' produit_id=produit.id %}">Ajouter</a></td>
+                                      <td> <a href="{% url 'pages:updateMinusProduit' produit_id=produit.id %}">Retirer</a></td>
+                                      <td> <a href="#">Supprimer</a></td>
+                                  </tr>
+                                  {% endfor %}
+                              </tbody>
+                          </table>
+                          <div class="form-group">
+                              <a href="{% url 'pages:addProduit' %}">Ajouter un produit</a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock allProduits %}
