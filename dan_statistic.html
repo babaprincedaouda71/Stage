@@ -1,0 +1,65 @@
+{% extends "pages/base.html" %}
+{% load static %}
+{% block allProduits %}
+
+    <div class="contacts-area mg-b-15">
+      <div class="container-fluid">
+        <div class="row">
+
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+              <div class="sparkline8-list">
+                  <div class="sparkline8-hd">
+                      <div class="main-sparkline8-hd">
+                          <h1>Statistique</h1>
+                      </div>
+                  </div>
+                  <div class="sparkline8-graph">
+                      <div class="static-table-list">
+                          <table class="table" align = "center">
+
+                              <thead>
+                                  <tr>
+                                      <th>#</th>
+                                      <th>Code</th>
+                                      <th>Nom</th>
+                                      <th>Quantité Commande</th>
+                                      <th>Quantité Recue</th>
+                                      <th>Quantité Retirer</th>
+                                      <th>Quantité Restant</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                {% for stat in historique %}
+                                  <tr>
+                                      <td>1</td>
+                                      <td>{{stat.produit.code_product}}</td>
+                                      <td>{{stat.produit.nom}}</td>
+                                      <td>{{stat.stockCommande}}</td>
+                                      <td>{{stat.stockRecue}}</td>
+                                      <td>{{stat.stockRetirer}}</td>
+                                      <td>{{stat.produit.quantite}}</td>
+
+                                  </tr>
+                                  {% endfor %}
+                              </tbody>
+                          </table>
+                          <div class="form-group">
+                              <a href="{% url 'pages:addProduit' %}">Ajouter un produit</a><br>
+                              <a href="{% url 'pages:base' %}">Home</a>
+                            <form class="" action="{% url 'pages:weeklyStat' %}" method="POST">
+                              {% csrf_token %}
+                          Date debut    <input type="date" name="dateDebut" value="">
+                          Date fin      <input type="date" name="datefin" value="">
+                                        <input type="submit" name="" value="search">
+                            </form>
+                  </div>
+                  <div >
+                      <a class="fa fa-home" href="{% url 'pages:base' %}">Home</a>
+
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock allProduits %}
